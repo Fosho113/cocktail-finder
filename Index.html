@@ -1,0 +1,671 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+    span.s2 {font: 12.0px 'Zapf Dingbats'; font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
+<p class="p1"><span class="s1">&lt;html lang="en"&gt;</span></p>
+<p class="p1"><span class="s1">&lt;head&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;!-- Ensure proper scaling on mobile devices --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;title&gt;Cocktail Recipe Finder&lt;/title&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;style&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Global Styles */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>body {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-family: Arial, sans-serif;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #f4f4f4;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #333;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Navigation Bar */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>nav {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #007BFF;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #fff;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-align: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>nav a {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #fff;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-decoration: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: bold;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>nav a.active {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-decoration: underline;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Main Container */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.container {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>max-width: 800px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 20px auto;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #fff;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>box-shadow: 0 4px 8px rgba(0,0,0,0.1);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>h1 {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>text-align: center;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Form Controls */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>label {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-weight: bold;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>input[type="text"],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>select,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>textarea {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 16px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 10px 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 4px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid #ccc;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>button {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 10px 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>font-size: 16px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 10px 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>cursor: pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 4px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #007BFF;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: #fff;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>button:hover {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #0056b3;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Ingredient Tag List */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>#ingredientList {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>list-style: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>#ingredientList li {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>background: #e9e9e9;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 5px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 5px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: inline-block;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 4px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>#ingredientList li span.remove {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-left: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>color: red;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>cursor: pointer;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Responsive Video Embed */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.video-container {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position: relative;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding-bottom: 56.25%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>height: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>overflow: hidden;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top: 20px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.video-container iframe {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>position: absolute;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>top: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>left: 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>height: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Sections */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.section {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: none;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.section.active {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>display: block;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Reviews */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.review {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-top: 1px solid #ccc;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding-top: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Favorites List styling */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.fav-item {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border: 1px solid #ccc;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>padding: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-bottom: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/* Step-by-step instructions */</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.steps {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin-top: 10px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.step {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>margin: 10px 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>.step img {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>width: 100%;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>border-radius: 8px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>@media (max-width: 600px) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>.container { padding: 15px; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>button { font-size: 18px; }</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
+<p class="p1"><span class="s1">&lt;body&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;!-- Navigation Bar --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;nav&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;a href="#" class="nav-link active" data-section="findSection"&gt;Find Cocktail&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;a href="#" class="nav-link" data-section="favoritesSection"&gt;Favorites&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;a href="#" class="nav-link" data-section="analyticsSection"&gt;Analytics&lt;/a&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/nav&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="container"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Find Cocktail Section --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;section id="findSection" class="section active" role="main"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h1&gt;Cocktail Recipe Finder&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;!-- Ingredient Input with Auto-Complete --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label for="ingredientInput"&gt;Add Ingredient:&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;input type="text" id="ingredientInput" list="ingredientSuggestions" aria-label="Ingredient Input" placeholder="Type an ingredient" /&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;datalist id="ingredientSuggestions"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;option value="Vodka"&gt;&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;option value="Gin"&gt;&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;option value="Rum"&gt;&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;option value="Tequila"&gt;&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;option value="Triple Sec"&gt;&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;option value="Bourbon"&gt;&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;option value="Whiskey"&gt;&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;option value="Lime Juice"&gt;&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;option value="Lemon Juice"&gt;&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;option value="Orange Juice"&gt;&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;option value="Cola"&gt;&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;option value="Simple Syrup"&gt;&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;option value="Mint"&gt;&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;option value="Cranberry Juice"&gt;&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;option value="Grenadine"&gt;&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;option value="Peach Schnapps"&gt;&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/datalist&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;button id="addIngredientBtn"&gt;Add Ingredient&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;!-- Display Added Ingredients --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;ul id="ingredientList" aria-label="List of added ingredients"&gt;&lt;/ul&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">      </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;!-- Flavor Profile Selection --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;Select Flavor Profiles (optional):&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label&gt;&lt;input type="checkbox" class="flavor-checkbox" value="sweet" /&gt; Sweet&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label&gt;&lt;input type="checkbox" class="flavor-checkbox" value="tart" /&gt; Tart&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label&gt;&lt;input type="checkbox" class="flavor-checkbox" value="dry" /&gt; Dry&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">      </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;!-- Action Buttons --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;button id="findCocktailBtn"&gt;Find Cocktail&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;button id="findLocalBarsBtn"&gt;Find Local Bars&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">      </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;!-- Result Container --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div id="result"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Favorites Section --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;section id="favoritesSection" class="section" role="main"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h1&gt;Your Favorites&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div id="favoritesList"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;!-- Analytics Section (Admin Dashboard) --&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;section id="analyticsSection" class="section" role="main"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;h1&gt;Analytics Dashboard&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>&lt;div id="analyticsData"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;script&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/**********************</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>* GLOBAL VARIABLES</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>**********************/</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>let ingredients = [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Flavor keywords for matching – these can be expanded over time.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const flavorKeywords = {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>"sweet": ["sweet", "mojito", "daiquiri", "colada", "piña"],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>"tart": ["tart", "margarita", "sour"],</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>"dry": ["dry", "martini", "gin", "tonic", "old fashioned"]</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>};</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/**********************</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>* NAVIGATION LOGIC</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>**********************/</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>document.querySelectorAll('.nav-link').forEach(link =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>link.addEventListener('click', e =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>e.preventDefault();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.querySelectorAll('.nav-link').forEach(l =&gt; l.classList.remove('active'));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>e.target.classList.add('active');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const section = e.target.getAttribute('data-section');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.querySelectorAll('.section').forEach(sec =&gt; sec.classList.remove('active'));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById(section).classList.add('active');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (section === "favoritesSection") {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>loadFavorites();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>} else if (section === "analyticsSection") {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>loadAnalytics();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/**********************</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>* INGREDIENT MANAGEMENT</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>**********************/</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const ingredientInput = document.getElementById('ingredientInput');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const ingredientListEl = document.getElementById('ingredientList');</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('addIngredientBtn').addEventListener('click', () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const ing = ingredientInput.value.trim();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (ing &amp;&amp; !ingredients.includes(ing.toLowerCase())) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>ingredients.push(ing.toLowerCase());</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>updateIngredientList();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>ingredientInput.value = '';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function updateIngredientList() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>ingredientListEl.innerHTML = '';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>ingredients.forEach((ing, index) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const li = document.createElement('li');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>li.textContent = ing;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const span = document.createElement('span');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>span.textContent = '</span><span class="s2">✕</span><span class="s1">';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>span.className = 'remove';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>span.setAttribute('aria-label', 'Remove ingredient');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>span.addEventListener('click', () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>ingredients.splice(index, 1);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>updateIngredientList();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>li.appendChild(span);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>ingredientListEl.appendChild(li);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/**********************</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>* LOCAL BARS GEOLICATION</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>**********************/</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('findLocalBarsBtn').addEventListener('click', () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (navigator.geolocation) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>navigator.geolocation.getCurrentPosition(position =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>const { latitude, longitude } = position.coords;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>const mapsUrl = `https://www.google.com/maps/search/bars+near+${latitude},${longitude}`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>window.open(mapsUrl, '_blank');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}, error =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>alert("Geolocation error: " + error.message);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>alert("Geolocation is not supported by your browser.");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/**********************</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>* FIND COCKTAIL (ADVANCED FILTERING)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>**********************/</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById('findCocktailBtn').addEventListener('click', async () =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (ingredients.length === 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>alert("Please add at least one ingredient.");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">      </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Get selected flavor profiles (if none selected, we treat it as "any")</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const selectedFlavors = Array.from(document.querySelectorAll('.flavor-checkbox:checked')).map(cb =&gt; cb.value);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">      </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Use the first ingredient for API filtering</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const primaryIngredient = ingredients[0];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const filterUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${encodeURIComponent(primaryIngredient)}`;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">      </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>try {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const response = await fetch(filterUrl);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const data = await response.json();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (!data.drinks) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>document.getElementById('result').innerHTML = `&lt;p&gt;No cocktails found with "${primaryIngredient}".&lt;/p&gt;`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Fetch detailed information for each returned cocktail.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const detailedDrinks = await Promise.all(</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>data.drinks.map(async drink =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const detailUrl = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink.idDrink}`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>try {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>const resp = await fetch(detailUrl);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>const detailData = await resp.json();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>if(detailData.drinks &amp;&amp; detailData.drinks[0]) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>return detailData.drinks[0];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>} catch(e) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>console.error("Error fetching details for ", drink.idDrink, e);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>return null;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>})</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const availableDrinks = detailedDrinks.filter(drink =&gt; drink !== null);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Advanced multi-ingredient scoring based on user ingredients.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>availableDrinks.forEach(drink =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>let score = 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>let drinkIngredients = [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>for (let i = 1; i &lt;= 15; i++) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const ing = drink[`strIngredient${i}`];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (ing) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>drinkIngredients.push(ing.toLowerCase());</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>ingredients.forEach(userIng =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>if (drinkIngredients.includes(userIng)) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>score++;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>drink.matchScore = score;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">          </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>// Flavor matching: if flavors are selected, check if the cocktail’s name or instructions match any flavor keywords.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>if (selectedFlavors.length &gt; 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>let flavorMatch = false;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const text = (drink.strDrink + " " + (drink.strInstructions || "")).toLowerCase();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>selectedFlavors.forEach(flavor =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>const keywords = flavorKeywords[flavor] || [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>if (keywords.some(keyword =&gt; text.includes(keyword))) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>flavorMatch = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>drink.flavorMatch = flavorMatch;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>drink.flavorMatch = true;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Filter out drinks that fail the flavor filter (if any flavors were selected).</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let filteredDrinks = availableDrinks.filter(drink =&gt; drink.flavorMatch);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (filteredDrinks.length === 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>filteredDrinks = availableDrinks;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Sort by the matchScore (higher scores on top)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>filteredDrinks.sort((a, b) =&gt; b.matchScore - a.matchScore);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const chosenCocktail = filteredDrinks[0];</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (!chosenCocktail) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>document.getElementById('result').innerHTML = `&lt;p&gt;No matching cocktail found.&lt;/p&gt;`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Update Analytics (increment view count)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>updateAnalytics(chosenCocktail.idDrink, chosenCocktail.strDrink);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>displayCocktail(chosenCocktail);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} catch (error) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>console.error("Error:", error);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById('result').innerHTML = `&lt;p&gt;An error occurred while fetching the cocktail.&lt;/p&gt;`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>});</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/**********************</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>* ANALYTICS: Increment &amp; Store Views</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>**********************/</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function updateAnalytics(cocktailId, cocktailName) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>let analytics = JSON.parse(localStorage.getItem('analytics')) || {};</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (!analytics[cocktailId]) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>analytics[cocktailId] = { name: cocktailName, views: 0 };</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>analytics[cocktailId].views += 1;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>localStorage.setItem('analytics', JSON.stringify(analytics));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/**********************</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>* DISPLAY COCKTAIL DETAILS</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>**********************/</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function displayCocktail(cocktail) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const resultDiv = document.getElementById('result');</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">      </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Determine proper video URL (using embed if necessary)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>let videoLink = cocktail.strVideo || cocktail.strYoutube || "";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (videoLink) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (videoLink.includes("watch?v=")) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>videoLink = videoLink.replace("watch?v=", "embed/");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>videoLink = "https://www.youtube.com/embed/zCtDil5CsVI"; // default video</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">      </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>resultDiv.innerHTML = `</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h2&gt;${cocktail.strDrink}&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="video-container"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;iframe src="${videoLink}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="${cocktail.strDrink} Video"&gt;&lt;/iframe&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;${cocktail.strInstructions || "No instructions available."}&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;img src="${cocktail.strDrinkThumb}" alt="${cocktail.strDrink}" style="width:100%; border-radius:8px; margin-top:20px;"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;button id="favoriteBtn" class="favorite-btn"&gt;&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;button id="shareBtn"&gt;Share Cocktail&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;button id="toggleStepsBtn"&gt;View Step-by-Step&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div id="steps" class="steps" style="display:none;"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div id="reviewsSection"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;h3&gt;Ratings and Reviews&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;div id="reviewDisplay"&gt;&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;form id="reviewForm"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label for="rating"&gt;Rating:&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;select id="rating" required&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;option value=""&gt;Select a rating&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;option value="1"&gt;1 Star&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;option value="2"&gt;2 Stars&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;option value="3"&gt;3 Stars&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;option value="4"&gt;4 Stars&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">              </span>&lt;option value="5"&gt;5 Stars&lt;/option&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/select&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;br&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;label for="reviewText"&gt;Review:&lt;/label&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;textarea id="reviewText" rows="3" placeholder="Write your review here..." required&gt;&lt;/textarea&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;br&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;button type="submit"&gt;Submit Review&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>&lt;/form&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>`;</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">      </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Favorite button: check localStorage and update accordingly.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const favBtn = document.getElementById('favoriteBtn');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const favorites = JSON.parse(localStorage.getItem('favorites')) || [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (favorites.includes(cocktail.idDrink)) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>favBtn.textContent = "Remove from Favorites";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>favBtn.textContent = "Add to Favorites";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>favBtn.addEventListener('click', () =&gt; toggleFavorite(cocktail));</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">      </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Share button: use Web Share API or fallback.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>document.getElementById('shareBtn').addEventListener('click', () =&gt; shareCocktail(cocktail));</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">      </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Toggle step-by-step instructions.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>document.getElementById('toggleStepsBtn').addEventListener('click', () =&gt; toggleSteps(cocktail));</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">      </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Load reviews (from localStorage)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>loadReviews(cocktail.idDrink);</span></p>
+<p class="p2"><span class="s1"><span class="Apple-converted-space">      </span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>// Setup review form submission</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>document.getElementById('reviewForm').addEventListener('submit', (e) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>e.preventDefault();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>submitReview(cocktail.idDrink);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/**********************</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>* STEP-BY-STEP INSTRUCTIONS TOGGLE</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>**********************/</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function toggleSteps(cocktail) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const stepsDiv = document.getElementById('steps');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (stepsDiv.style.display === 'none') {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// For simplicity, split instructions by period (".") and display each step with a placeholder image.</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const steps = (cocktail.strInstructions || "").split('.').filter(step =&gt; step.trim() !== "");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let html = "&lt;h3&gt;Step-by-Step Instructions:&lt;/h3&gt;";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>steps.forEach((step, index) =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>html += `&lt;div class="step"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                     </span>&lt;p&gt;&lt;strong&gt;Step ${index + 1}:&lt;/strong&gt; ${step.trim()}.&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                     </span>&lt;img src="https://via.placeholder.com/600x400?text=Step+${index + 1}" alt="Step ${index + 1} Image"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                   </span>&lt;/div&gt;`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>stepsDiv.innerHTML = html;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>stepsDiv.style.display = 'block';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>stepsDiv.style.display = 'none';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/**********************</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>* FAVORITES MANAGEMENT</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>**********************/</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function toggleFavorite(cocktail) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>let favorites = JSON.parse(localStorage.getItem('favorites')) || [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (favorites.includes(cocktail.idDrink)) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>favorites = favorites.filter(id =&gt; id !== cocktail.idDrink);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>alert(`${cocktail.strDrink} removed from favorites.`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>favorites.push(cocktail.idDrink);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>alert(`${cocktail.strDrink} added to favorites.`);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>localStorage.setItem('favorites', JSON.stringify(favorites));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>document.getElementById('favoriteBtn').textContent = favorites.includes(cocktail.idDrink) ? "Remove from Favorites" : "Add to Favorites";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/**********************</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>* SOCIAL SHARING</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>**********************/</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function shareCocktail(cocktail) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const shareData = {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>title: cocktail.strDrink,</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>text: cocktail.strInstructions || "Check out this cocktail recipe!",</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>url: window.location.href</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>};</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (navigator.share) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>navigator.share(shareData)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>.then(() =&gt; console.log("Shared successfully"))</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>.catch((error) =&gt; console.error("Error sharing", error));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareData.title + " - " + shareData.text)}`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>window.open(twitterUrl, '_blank');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/**********************</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>* REVIEWS AND RATINGS (via localStorage)</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>**********************/</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function loadReviews(cocktailId) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const reviewsDiv = document.getElementById('reviewDisplay');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const reviews = JSON.parse(localStorage.getItem(`reviews_${cocktailId}`)) || [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (reviews.length === 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>reviewsDiv.innerHTML = "&lt;p&gt;No reviews yet. Be the first to review!&lt;/p&gt;";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} else {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let html = "";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>let totalRating = 0;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>reviews.forEach(review =&gt; {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>totalRating += Number(review.rating);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>html += `&lt;div class="review"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                     </span>&lt;p&gt;&lt;strong&gt;Rating:&lt;/strong&gt; ${review.rating} Star${review.rating &gt; 1 ? "s" : ""}&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                     </span>&lt;p&gt;${review.text}&lt;/p&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                   </span>&lt;/div&gt;`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const avgRating = (totalRating / reviews.length).toFixed(1);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>html = `&lt;p&gt;&lt;strong&gt;Average Rating:&lt;/strong&gt; ${avgRating} Stars&lt;/p&gt;` + html;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>reviewsDiv.innerHTML = html;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function submitReview(cocktailId) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const rating = document.getElementById('rating').value;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const reviewText = document.getElementById('reviewText').value.trim();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (!rating || !reviewText) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>alert("Please provide both a rating and a review.");</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const reviews = JSON.parse(localStorage.getItem(`reviews_${cocktailId}`)) || [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>reviews.push({ rating, text: reviewText });</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>localStorage.setItem(`reviews_${cocktailId}`, JSON.stringify(reviews));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>document.getElementById('rating').value = "";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>document.getElementById('reviewText').value = "";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>loadReviews(cocktailId);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/**********************</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>* FAVORITES SECTION LOADING</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>**********************/</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>async function loadFavorites() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const favoritesDiv = document.getElementById('favoritesList');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const favorites = JSON.parse(localStorage.getItem('favorites')) || [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>if (favorites.length === 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>favoritesDiv.innerHTML = "&lt;p&gt;You have no favorite cocktails yet.&lt;/p&gt;";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>return;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>let html = "";</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>for (const id of favorites) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>try {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>const detailUrl = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>const resp = await fetch(detailUrl);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>const detailData = await resp.json();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>if (detailData.drinks &amp;&amp; detailData.drinks[0]) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>const drink = detailData.drinks[0];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>html += `&lt;div class="fav-item"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                       </span>&lt;h3&gt;${drink.strDrink}&lt;/h3&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                       </span>&lt;img src="${drink.strDrinkThumb}" alt="${drink.strDrink}" style="width:100%; border-radius:8px;"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                       </span>&lt;button onclick="viewFavorite('${drink.idDrink}')"&gt;View Details&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                       </span>&lt;button onclick="removeFavorite('${drink.idDrink}')"&gt;Remove&lt;/button&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                     </span>&lt;/div&gt;`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>} catch (error) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>console.error("Error loading favorite cocktail", error);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>favoritesDiv.innerHTML = html;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>async function viewFavorite(idDrink) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const detailUrl = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>try {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const resp = await fetch(detailUrl);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const detailData = await resp.json();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (detailData.drinks &amp;&amp; detailData.drinks[0]) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>document.querySelectorAll('.section').forEach(sec =&gt; sec.classList.remove('active'));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>document.getElementById('findSection').classList.add('active');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">          </span>displayCocktail(detailData.drinks[0]);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>} catch (error) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>console.error("Error fetching favorite details", error);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function removeFavorite(idDrink) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>let favorites = JSON.parse(localStorage.getItem('favorites')) || [];</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>favorites = favorites.filter(id =&gt; id !== idDrink);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>localStorage.setItem('favorites', JSON.stringify(favorites));</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>loadFavorites();</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>/**********************</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>* ANALYTICS DASHBOARD LOADING</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">     </span>**********************/</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function loadAnalytics() {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const analyticsDiv = document.getElementById('analyticsData');</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>const analytics = JSON.parse(localStorage.getItem('analytics')) || {};</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>let html = `&lt;table border="1" cellpadding="5" cellspacing="0" style="width:100%; border-collapse: collapse;"&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;tr&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                      </span>&lt;th&gt;Cocktail Name&lt;/th&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                      </span>&lt;th&gt;Views&lt;/th&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;/tr&gt;`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>for (const id in analytics) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>html += `&lt;tr&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                   </span>&lt;td&gt;${analytics[id].name}&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                   </span>&lt;td&gt;${analytics[id].views}&lt;/td&gt;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">                 </span>&lt;/tr&gt;`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>html += `&lt;/table&gt;`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>analyticsDiv.innerHTML = html;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
+<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+</body>
+</html>
