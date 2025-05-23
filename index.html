@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cocktail Recipe Finder</title>
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <!-- Google Fonts: Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #fafafa;
+      color: #333;
+    }
+    /* Navbar Customization */
+    .navbar {
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .navbar-brand, .nav-link {
+      font-weight: 700;
+    }
+    /* Section spacing */
+    .section {
+      margin-top: 30px;
+    }
+    /* Card styling */
+    .card-custom {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    /* Button hover effects */
+    button {
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    button:hover {
+      transform: translateY(-3px);
+    }
+    /* Ingredient tag styling */
+    #ingredientList li {
+      display: inline-block;
+      background: #e9ecef;
+      padding: 5px 10px;
+      margin: 5px;
+      border-radius: 20px;
+    }
+    #ingredientList li span.remove {
+      margin-left: 8px;
+      color: #dc3545;
+      cursor: pointer;
+    }
+    /* Responsive video styling */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    /* Review styling */
+    .review {
+      border-top: 1px solid #dee2e6;
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#"><i class="fas fa-cocktail"></i> Cocktail Finder</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link nav-link-section" href="#" data-section="findSection">Find Cocktail</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-section" href="#" data-section="favoritesSection">Favorites</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-section" href="#" data-section="analyticsSection">Analytics</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container section">
+    <!-- Find Cocktail Section -->
+    <section id="findSection" class="section active" role="main">
+      <div class="card card-custom p-4">
+        <h1 class="text-center mb-4">Cocktail Recipe Finder</h1>
+        <!-- Ingredient Input with Auto-Complete -->
+        <div class="form-group">
+          <label for="ingredientInput">Add Ingredient:</label>
+          <input type="text" id="ingredientInput" class="form-control" list="ingredientSuggestions" 
+                 placeholder="Type an ingredient" aria-label="Ingredient Input" />
+          <datalist id="ingredientSuggestions">
+            <option value="Vodka"></option>
+            <option value="Gin"></option>
+            <option value="Rum"></option>
+            <option value="Tequila"></option>
+            <option value="Triple Sec"></option>
+            <option value="Bourbon"></option>
+            <option value="Whiskey"></option>
+            <option value="Lime Juice"></option>
+            <option value="Lemon Juice"></option>
+            <option value="Orange Juice"></option>
+            <option value="Cola"></option>
+            <option value="Simple Syrup"></option>
+            <option value="Mint"></option>
+            <option value="Cranberry Juice"></option>
+            <option value="Grenadine"></option>
+            <option value="Peach Schnapps"></option>
+          </datalist>
+          <button id="addIngredientBtn" class="btn btn-primary mt-2">
+            <i class="fas fa-plus"></i> Add Ingredient
+          </button>
+        </div>
+        <!-- Display Added Ingredients -->
+        <ul id="ingredientList"></ul>
+        
+        <!-- Flavor Profile Selection -->
+        <div class="form-group">
+          <p>Select Flavor Profiles (optional):</p>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input flavor-checkbox" type="checkbox" id="flavorSweet" value="sweet">
+            <label class="form-check-label" for="flavorSweet">Sweet</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input flavor-checkbox" type="checkbox" id="flavorTart" value="tart">
+            <label class="form-check-label" for="flavorTart">Tart</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input flavor-checkbox" type="checkbox" id="flavorDry" value="dry">
+            <label class="form-check-label" for="flavorDry">Dry</label>
+          </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="mt-3">
+          <button id="findCocktailBtn" class="btn btn-success mr-2">
+            <i class="fas fa-search"></i> Find Cocktail
+          </button>
+          <button id="findLocalBarsBtn" class="btn btn-info">
+            <i class="fas fa-map-marker-alt"></i> Find Local Bars
+          </button>
+        </div>
+        
+        <!-- Result Container -->
+        <div id="result" class="mt-4"></div>
+      </div>
+    </section>
+    
+    <!-- Favorites Section -->
+    <section id="favoritesSection" class="section" role="main" style="display: none;">
+      <div class="card card-custom p-4">
+        <h1 class="text-center mb-4">Your Favorites</h1>
+        <div id="favoritesList"></div>
+      </div>
+    </section>
+    
+    <!-- Analytics Section -->
+    <section id="analyticsSection" class="section" role="main" style="display: none;">
+      <div class="card card-custom p-4">
+        <h1 class="text-center mb-4">Analytics Dashboard</h1>
+        <div id="analyticsData"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- JavaScript: jQuery, Popper.js, Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <script>
+    /**********************
+     * GLOBAL VARIABLES
+     **********************/
+    let ingredients = [];
+    const flavorKeywords = {
+      "sweet": ["sweet", "mojito", "daiquiri", "colada", "piña"],
+      "tart": ["tart", "margarita", "sour"],
+      "dry": ["dry", "martini", "gin", "tonic", "old fashioned"]
+    };
+
+    /**********************
+     * NAVIGATION LOGIC
+     **********************/
+    document.querySelectorAll('.nav-link-section').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.nav-link-section').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        const section = this.getAttribute('data-section');
+        document.querySelectorAll('section').forEach(sec => sec.style.display = 'none');
+        document.getElementById(section).style.display = 'block';
+        if(section === "favoritesSection") { loadFavorites(); }
+        if(section === "analyticsSection") { loadAnalytics(); }
+      });
+    });
+
+    /**********************
+     * INGREDIENT MANAGEMENT
+     **********************/
+    const ingredientInput = document.getElementById('ingredientInput');
+    const ingredientListEl = document.getElementById('ingredientList');
+
+    document.getElementById('addIngredientBtn').addEventListener('click', () => {
+      const ing = ingredientInput.value.trim();
+      if (ing && !ingredients.includes(ing.toLowerCase())) {
+        ingredients.push(ing.toLowerCase());
+        updateIngredientList();
+      }
+      ingredientInput.value = '';
+    });
+
+    function updateIngredientList() {
+      ingredientListEl.innerHTML = '';
+      ingredients.forEach((ing, index) => {
+        const li = document.createElement('li');
+        li.textContent = ing;
+        const span = document.createElement('span');
+        span.textContent = ' ✕';
+        span.className = 'remove';
+        span.setAttribute('aria-label', 'Remove ingredient');
+        span.addEventListener('click', () => {
+          ingredients.splice(index, 1);
+          updateIngredientList();
+        });
+        li.appendChild(span);
+        ingredientListEl.appendChild(li);
+      });
+    }
+
+    /**********************
+     * LOCAL BARS GEOLICATION
+     **********************/
+    document.getElementById('findLocalBarsBtn').addEventListener('click', () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          const { latitude, longitude } = position.coords;
+          const mapsUrl = `https://www.google.com/maps/search/bars+near+${latitude},${longitude}`;
+          window.open(mapsUrl, '_blank');
+        }, error => {
+          alert("Geolocation error: " + error.message);
+        });
+      } else {
+        alert("Geolocation is not supported by your browser.");
+      }
+    });
+
+    /**********************
+     * FIND COCKTAIL (ADVANCED FILTERING)
+     **********************/
+    document.getElementById('findCocktailBtn').addEventListener('click', async () => {
+      if (ingredients.length === 0) {
+        alert("Please add at least one ingredient.");
+        return;
+      }
+      
+      const selectedFlavors = Array.from(document.querySelectorAll('.flavor-checkbox:checked')).map(cb => cb.value);
+      const primaryIngredient = ingredients[0];
+      const filterUrl = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${encodeURIComponent(primaryIngredient)}`;
+      
+      try {
+        const response = await fetch(filterUrl);
+        const data = await response.json();
+        if (!data.drinks) {
+          document.getElementById('result').innerHTML = `<p>No cocktails found with "${primaryIngredient}".</p>`;
+          return;
+        }
+        const detailedDrinks = await Promise.all(
+          data.drinks.map(async drink => {
+            const detailUrl = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drink.idDrink}`;
+            try {
+              const resp = await fetch(detailUrl);
+              const detailData = await resp.json();
+              if (detailData.drinks && detailData.drinks[0]) { return detailData.drinks[0]; }
+            } catch (e) {
+              console.error("Error fetching details for ", drink.idDrink, e);
+            }
+            return null;
+          })
+        );
+        const availableDrinks = detailedDrinks.filter(drink => drink !== null);
+        
+        availableDrinks.forEach(drink => {
+          let score = 0;
+          let drinkIngredients = [];
+          for (let i = 1; i <= 15; i++) {
+            const ing = drink[`strIngredient${i}`];
+            if (ing) { drinkIngredients.push(ing.toLowerCase()); }
+          }
+          ingredients.forEach(userIng => {
+            if (drinkIngredients.includes(userIng)) { score++; }
+          });
+          drink.matchScore = score;
+          if (selectedFlavors.length > 0) {
+            let flavorMatch = false;
+            const text = (drink.strDrink + " " + (drink.strInstructions || "")).toLowerCase();
+            selectedFlavors.forEach(flavor => {
+              const keywords = flavorKeywords[flavor] || [];
+              if (keywords.some(keyword => text.includes(keyword))) {
+                flavorMatch = true;
+              }
+            });
+            drink.flavorMatch = flavorMatch;
+          } else {
+            drink.flavorMatch = true;
+          }
+        });
+        
+        let filteredDrinks = availableDrinks.filter(drink => drink.flavorMatch);
+        if (filteredDrinks.length === 0) { filteredDrinks = availableDrinks; }
+        filteredDrinks.sort((a, b) => b.matchScore - a.matchScore);
+        const chosenCocktail = filteredDrinks[0];
+        
+        if (!chosenCocktail) {
+          document.getElementById('result').innerHTML = `<p>No matching cocktail found.</p>`;
+          return;
+        }
+        
+        updateAnalytics(chosenCocktail.idDrink, chosenCocktail.strDrink);
+        displayCocktail(chosenCocktail);
+        
+      } catch (error) {
+        console.error("Error:", error);
+        document.getElementById('result').innerHTML = `<p>An error occurred while fetching the cocktail.</p>`;
+      }
+    });
+
+    /**********************
+     * ANALYTICS MANAGEMENT
+     **********************/
+    function updateAnalytics(cocktailId, cocktailName) {
+      let analytics = JSON.parse(localStorage.getItem('analytics')) || {};
+      if (!analytics[cocktailId]) { analytics[cocktailId] = { name: cocktailName, views: 0 }; }
+      analytics[cocktailId].views += 1;
+      localStorage.setItem('analytics', JSON.stringify(analytics));
+    }
+
+    /**********************
+     * DISPLAY COCKTAIL DETAILS
+     **********************/
+    function displayCocktail(cocktail) {
+      const resultDiv = document.getElementById('result');
+      let videoLink = cocktail.strVideo || cocktail.strYoutube || "";
+      if (videoLink) {
+        if (videoLink.includes("watch?v=")) {
+          videoLink = videoLink.replace("watch?v=", "embed/");
+        }
+      } else {
+        videoLink = "https://www.youtube.com/embed/zCtDil5CsVI";
+      }
+      resultDiv.innerHTML = `
+        <h2 class="mt-4">${cocktail.strDrink}</h2>
+        <div class="video-container mb-3">
+          <iframe src="${videoLink}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="${cocktail.strDrink} Video"></iframe>
+        </div>
+        <p>${cocktail.strInstructions || "No instructions available."}</p>
+        <img src="${cocktail.strDrinkThumb}" alt="${cocktail.strDrink}" class="img-fluid rounded mb-3">
+        <div class="mb-3">
+          <button id="favoriteBtn" class="btn btn-warning"></button>
+          <button id="shareBtn" class="btn btn-secondary ml-2">Share Cocktail</button>
+          <button id="toggleStepsBtn" class="btn btn-info ml-2">View Step-by-Step</button>
+        </div>
+        <div id="steps" class="mb-3" style="display:none;"></div>
+        <div id="reviewsSection">
+          <h3>Ratings and Reviews</h3>
+          <div id="reviewDisplay"></div>
+          <form id="reviewForm">
+            <div class="form-group">
+              <label for="rating">Rating:</label>
+              <select id="rating" class="form-control" required>
+                <option value="">Select a rating</option>
+                <option value="1">1 Star</option>
+                <option value="2">2 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="5">5 Stars</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="reviewText">Review:</label>
+              <textarea id="reviewText" rows="3" class="form-control" placeholder="Write your review here..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+          </form>
+        </div>
+      `;
+      
+      const favBtn = document.getElementById('favoriteBtn');
+      const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      if (favorites.includes(cocktail.idDrink)) {
+        favBtn.textContent = "Remove from Favorites";
+      } else {
+        favBtn.textContent = "Add to Favorites";
+      }
+      favBtn.addEventListener('click', () => toggleFavorite(cocktail));
+      document.getElementById('shareBtn').addEventListener('click', () => shareCocktail(cocktail));
+      document.getElementById('toggleStepsBtn').addEventListener('click', () => toggleSteps(cocktail));
+      loadReviews(cocktail.idDrink);
+      document.getElementById('reviewForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        submitReview(cocktail.idDrink);
+      });
+    }
+
+    /**********************
+     * STEP-BY-STEP INSTRUCTIONS
+     **********************/
+    function toggleSteps(cocktail) {
+      const stepsDiv = document.getElementById('steps');
+      if (stepsDiv.style.display === 'none') {
+        const steps = (cocktail.strInstructions || "").split('.').filter(step => step.trim() !== "");
+        let html = "<h3>Step-by-Step Instructions:</h3>";
+        steps.forEach((step, index) => {
+          html += `<div class="mb-3">
+                     <p><strong>Step ${index + 1}:</strong> ${step.trim()}.</p>
+                     <img src="https://via.placeholder.com/600x400?text=Step+${index + 1}" alt="Step ${index + 1} Image" class="img-fluid rounded">
+                   </div>`;
+        });
+        stepsDiv.innerHTML = html;
+        stepsDiv.style.display = 'block';
+      } else {
+        stepsDiv.style.display = 'none';
+      }
+    }
+
+    /**********************
+     * FAVORITES MANAGEMENT
+     **********************/
+    function toggleFavorite(cocktail) {
+      let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      if (favorites.includes(cocktail.idDrink)) {
+        favorites = favorites.filter(id => id !== cocktail.idDrink);
+        alert(`${cocktail.strDrink} removed from favorites.`);
+      } else {
+        favorites.push(cocktail.idDrink);
+        alert(`${cocktail.strDrink} added to favorites.`);
+      }
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      document.getElementById('favoriteBtn').textContent = favorites.includes(cocktail.idDrink) ? "Remove from Favorites" : "Add to Favorites";
+    }
+
+    /**********************
+     * SOCIAL SHARING
+     **********************/
+    function shareCocktail(cocktail) {
+      const shareData = {
+        title: cocktail.strDrink,
+        text: cocktail.strInstructions || "Check out this cocktail recipe!",
+        url: window.location.href
+      };
+      if (navigator.share) {
+        navigator.share(shareData)
+          .then(() => console.log("Shared successfully"))
+          .catch(error => console.error("Error sharing", error));
+      } else {
+        const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareData.title + " - " + shareData.text)}`;
+        window.open(twitterUrl, '_blank');
+      }
+    }
+
+    /**********************
+     * REVIEWS AND RATINGS
+     **********************/
+    function loadReviews(cocktailId) {
+      const reviewsDiv = document.getElementById('reviewDisplay');
+      const reviews = JSON.parse(localStorage.getItem(`reviews_${cocktailId}`)) || [];
+      if (reviews.length === 0) {
+        reviewsDiv.innerHTML = "<p>No reviews yet. Be the first to review!</p>";
+      } else {
+        let html = "";
+        let totalRating = 0;
+        reviews.forEach(review => {
+          totalRating += Number(review.rating);
+          html += `<div class="review">
+                     <p><strong>Rating:</strong> ${review.rating} Star${review.rating > 1 ? "s" : ""}</p>
+                     <p>${review.text}</p>
+                   </div>`;
+        });
+        const avgRating = (totalRating / reviews.length).toFixed(1);
+        html = `<p><strong>Average Rating:</strong> ${avgRating} Stars</p>` + html;
+        reviewsDiv.innerHTML = html;
+      }
+    }
+
+    function submitReview(cocktailId) {
+      const rating = document.getElementById('rating').value;
+      const reviewText = document.getElementById('reviewText').value.trim();
+      if (!rating || !reviewText) {
+        alert("Please provide both a rating and a review.");
+        return;
+      }
+      const reviews = JSON.parse(localStorage.getItem(`reviews_${cocktailId}`)) || [];
+      reviews.push({ rating, text: reviewText });
+      localStorage.setItem(`reviews_${cocktailId}`, JSON.stringify(reviews));
+      document.getElementById('rating').value = "";
+      document.getElementById('reviewText').value = "";
+      loadReviews(cocktailId);
+    }
+
+    /**********************
+     * FAVORITES SECTION LOADING
+     **********************/
+    async function loadFavorites() {
+      const favoritesDiv = document.getElementById('favoritesList');
+      const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      if (favorites.length === 0) {
+        favoritesDiv.innerHTML = "<p>You have no favorite cocktails yet.</p>";
+        return;
+      }
+      let html = "";
+      for (const id of favorites) {
+        try {
+          const detailUrl = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
+          const resp = await fetch(detailUrl);
+          const detailData = await resp.json();
+          if (detailData.drinks && detailData.drinks[0]) {
+            const drink = detailData.drinks[0];
+            html += `<div class="card card-custom p-3">
+                       <h3>${drink.strDrink}</h3>
+                       <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}" class="img-fluid rounded">
+                       <button class="btn btn-primary mt-2" onclick="viewFavorite('${drink.idDrink}')">View Details</button>
+                       <button class="btn btn-danger mt-2" onclick="removeFavorite('${drink.idDrink}')">Remove</button>
+                     </div>`;
+          }
+        } catch (error) {
+          console.error("Error loading favorite cocktail", error);
+        }
+      }
+      favoritesDiv.innerHTML = html;
+    }
+
+    async function viewFavorite(idDrink) {
+      const detailUrl
